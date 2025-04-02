@@ -1,4 +1,4 @@
-# Habit Tracker 2.0
+# Habit Tracker
 
 A modern, user-friendly habit tracking application built with Vue 3 and Pinia. Track your daily habits, build consistency, and achieve your goals with a clean and intuitive interface.
 
@@ -9,7 +9,6 @@ A modern, user-friendly habit tracking application built with Vue 3 and Pinia. T
 - 🎯 Habit categories (Personal, Health, Work, Learning)
 - 💾 Local storage persistence
 - 🎨 Customizable habit categories with icons
-- 📊 Track habit completion status
 - 🔄 Edit and delete habits
 - ⚙️ User settings and onboarding experience
 
@@ -33,7 +32,7 @@ A modern, user-friendly habit tracking application built with Vue 3 and Pinia. T
 1. Clone the repository:
 
 ```bash
-git clone [repository-url]
+git clone https://github.com/vestinabert/Habit_Tracker.git
 cd habit-tracker
 ```
 
@@ -63,24 +62,6 @@ npm run build
 yarn build
 ```
 
-## Project Structure
-
-```
-habit-tracker/
-├── src/
-│   ├── assets/         # Static assets
-│   ├── components/     # Vue components
-│   ├── composables/    # Reusable composition functions
-│   ├── router/         # Vue Router configuration
-│   ├── stores/         # Pinia stores
-│   ├── utils/          # Utility functions
-│   ├── views/          # Page components
-│   ├── App.vue         # Root component
-│   └── main.js         # Application entry point
-├── public/             # Public static files
-└── package.json        # Project dependencies and scripts
-```
-
 ## Features in Detail
 
 ### Habit Management
@@ -88,7 +69,6 @@ habit-tracker/
 - Create new habits with name, category, and optional description
 - Edit existing habits
 - Delete habits
-- Track daily completion status
 
 ### Date Navigation
 
@@ -96,13 +76,6 @@ habit-tracker/
 - Navigate between days
 - Week view with quick date selection
 - Future date prevention
-
-### Categories
-
-- Personal
-- Health
-- Work
-- Learning
 
 ### Data Persistence
 
