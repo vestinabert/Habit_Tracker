@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import CancelButton from '@/components/CancelButton.vue'
+import CancelButton from '../components/CancelButton.vue'
 import { useHabitStore } from '../stores/habitStore'
 import { useHabitCategory } from '../composables/useHabitCategory'
 import { useRouter } from 'vue-router'
@@ -36,10 +36,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const habitStore = useHabitStore()
 const habits = habitStore.habits
+const { getCategoryIcon } = useHabitCategory()
 
 const goToEdit = (habitId) => {
   router.push(`/edit-habit/${habitId}`)
 }
-
-const { getCategoryIcon } = useHabitCategory()
 </script>

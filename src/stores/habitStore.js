@@ -1,21 +1,51 @@
 import { defineStore } from 'pinia'
 import { saveToLocalStorage, loadFromLocalStorage } from '../utils/localStorage'
-import { reactive } from 'vue'
 
 export const useHabitStore = defineStore('habitStore', {
   state: () => ({
     habits: loadFromLocalStorage('habits', []),
-    habitRecords: reactive(loadFromLocalStorage('habitRecords', {})),
+    habitRecords: loadFromLocalStorage('habitRecords', {}) || {},
+    categories: loadFromLocalStorage('categories', [
+      { name: 'personal', icon: '🏠' },
+      { name: 'health', icon: '💪' },
+      { name: 'work', icon: '💼' },
+      { name: 'learning', icon: '📚' },
+    ]),
     showOnboarding: loadFromLocalStorage('showOnboarding', true),
+    darkMode: loadFromLocalStorage('darkMode', false),
   }),
   getters: {
-    getRecordsByDate: (state) => (date) => {
-      try {
-        const records = state.habitRecords[date] || {}
-        return records
-      } catch (error) {
-        console.error('Error in getRecordsByDate:', error)
-        return {}
+    habitStreak: (state) => {
+      return (habitId, currentDate) => {
+        let streak = 0
+        const todayStr = new Date().toISOString().split('T')[0]
+        let cursor = new Date(currentDate)
+
+        // If currentDate is in the future, return 0
+        if (currentDate > todayStr) return 0
+
+        // If habit is not completed on currentDate, step one day back
+        const currentDateStr = cursor.toISOString().split('T')[0]
+        const isCompletedToday =
+          state.habitRecords?.[currentDateStr]?.[habitId] === true
+        if (!isCompletedToday) {
+          cursor.setDate(cursor.getDate() - 1)
+        }
+
+        // Count streak going backwards
+        while (true) {
+          const dateStr = cursor.toISOString().split('T')[0]
+          const completed = state.habitRecords?.[dateStr]?.[habitId] === true
+
+          if (completed) {
+            streak++
+            cursor.setDate(cursor.getDate() - 1)
+          } else {
+            break
+          }
+        }
+
+        return streak
       }
     },
   },
@@ -23,9 +53,15 @@ export const useHabitStore = defineStore('habitStore', {
     getHabit(id) {
       return this.habits.find((habit) => habit.id === id)
     },
+    getHabitsByDate(date) {
+      const records = this.habitRecords[date] || {}
+      return this.habits.filter((habit) => records[habit.id])
+    },
     persistData() {
       saveToLocalStorage('habits', this.habits)
       saveToLocalStorage('habitRecords', this.habitRecords)
+      saveToLocalStorage('categories', this.categories)
+      saveToLocalStorage('darkMode', this.darkMode)
       saveToLocalStorage('showOnboarding', this.showOnboarding)
     },
     deleteHabit(id) {
@@ -37,14 +73,8 @@ export const useHabitStore = defineStore('habitStore', {
       }
       this.persistData()
     },
-    addHabit({ name, category = 'personal', description = '' }) {
-      const newHabit = {
-        id: Date.now().toString(),
-        name,
-        category,
-        description,
-      }
-      this.habits.push(newHabit)
+    addHabit(habit) {
+      this.habits.push(habit)
       this.persistData()
     },
     updateHabit(id, { name, category, description }) {
@@ -56,7 +86,7 @@ export const useHabitStore = defineStore('habitStore', {
         this.persistData()
       }
     },
-    toggleHabitCompletion(date, habitId) {
+    toggleHabitCompletion(habitId, date) {
       try {
         if (!this.habitRecords[date]) {
           this.habitRecords[date] = {}

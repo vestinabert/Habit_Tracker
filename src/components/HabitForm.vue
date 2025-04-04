@@ -16,17 +16,17 @@
       <label class="form-label">Category</label>
       <div class="category-buttons">
         <button
-          v-for="category in categories"
+          v-for="category in habitStore.categories"
           :key="category.name"
           type="button"
           class="category-button"
+          @click="formData.category = category.name"
           :class="[
             `category-${category.name}`,
             { active: formData.category === category.name },
           ]"
-          @click="formData.category = category.name"
         >
-          <span class="category-icon">{{ category.icon }}</span>
+          <span class="habit-icon">{{ category.icon }}</span>
           {{ category.name }}
         </button>
       </div>
@@ -53,7 +53,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useHabitCategory } from '../composables/useHabitCategory'
+import { useHabitStore } from '../stores/habitStore'
+
+const habitStore = useHabitStore()
 
 const props = defineProps({
   initialData: {
@@ -67,8 +69,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['submit'])
-
-const { categories } = useHabitCategory()
 
 const formData = ref({
   name: '',

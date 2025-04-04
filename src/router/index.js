@@ -33,7 +33,24 @@ const router = createRouter({
       name: 'Settings',
       component: () => import('../views/SettingsView.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
+    },
   ],
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'DayView') {
+    const today = new Date().toISOString().split('T')[0]
+    const requestedDate = to.params.date
+
+    if (requestedDate > today) {
+      return next(`/day/${today}`)
+    }
+  }
+
+  next()
 })
 
 export default router

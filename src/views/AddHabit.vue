@@ -12,18 +12,21 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { useHabitStore } from '../stores/habitStore'
-import CancelButton from '../components/CancelButton.vue'
 import HabitForm from '../components/HabitForm.vue'
+import CancelButton from '../components/CancelButton.vue'
 
 const router = useRouter()
 const habitStore = useHabitStore()
 
-const handleSubmit = async (formData) => {
-  try {
-    await habitStore.addHabit(formData)
-    router.push('/')
-  } catch (error) {
-    console.error('Failed to add habit:', error)
+const handleSubmit = (formData) => {
+  const newHabit = {
+    id: Date.now().toString(),
+    name: formData.name,
+    category: formData.category,
+    description: formData.description,
   }
+
+  habitStore.addHabit(newHabit)
+  router.push('/')
 }
 </script>
