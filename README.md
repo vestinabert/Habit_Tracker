@@ -7,6 +7,7 @@ A modern, user-friendly habit tracking application built with Vue 3 and Pinia. T
 - 📱 Clean, modern UI with responsive design
 - 📅 Daily habit tracking with date navigation
 - 🎯 Habit categories (Personal, Health, Work, Learning)
+- 🔥 Streaks tracking
 - 💾 Local storage persistence
 - 🎨 Customizable habit categories with icons
 - 🔄 Edit and delete habits
