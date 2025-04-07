@@ -13,6 +13,20 @@ A modern, user-friendly habit tracking application built with Vue 3 and Pinia. T
 - 🔄 Edit and delete habits
 - ⚙️ User settings and onboarding experience
 
+## Screenshots
+
+#### Onboarding & Welcome Screen
+<img width="543" alt="Onboarding   Welcome" src="https://github.com/user-attachments/assets/b9f5cefb-74dc-4048-a9d4-0ff39c8c3646" />
+
+
+#### Habit List and Tracking Progress
+<img width="547" alt="Habit List and Tracking Progress" src="https://github.com/user-attachments/assets/60d0ec7a-643c-4261-9005-224cda40a748" />
+
+
+#### Creating and Editing Habits
+<img width="538" alt="Creating and Editing Habits" src="https://github.com/user-attachments/assets/c9b8d52e-5466-4f9a-91d9-f1332f07400e" />
+
+
 ## Tech Stack
 
 - Vue 3 - Progressive JavaScript Framework
