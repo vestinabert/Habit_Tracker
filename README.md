@@ -1,6 +1,49 @@
-# habit-tracker-2.0
+# Habit Tracker
 
-This template should help get you started developing with Vue 3 in Vite.
+Habit Tracker 2.0 is a modern web application that helps users track and maintain their daily habits. The application is built with Vue 3 and TypeScript, providing a robust and type-safe development experience.
+
+### Key Features
+
+- 📝 Create and manage custom habits
+- 🗂️ Organize habits by categories
+- ✅ Track daily habit completion
+- 📊 View habit completion history
+- 💾 Local storage persistence
+- 🎯 Onboarding experience for new users
+
+### Technologies Used
+
+- **Frontend Framework:** Vue 3 with Composition API
+- **Build Tool:** Vite
+- **Language:** TypeScript
+- **State Management:** Pinia
+- **Testing:**
+  - Unit Testing: Vitest
+  - E2E Testing: Playwright
+- **Code Quality:**
+  - ESLint for code linting
+  - TypeScript for static type checking
+
+## Features in Detail
+
+### Habit Management
+
+- Create new habits with name, category, and optional description
+- Edit existing habits
+- Delete habits
+
+### Date Navigation
+
+- View habits for any date
+- Navigate between days
+- Week view with quick date selection
+- Future date prevention
+
+### Data Persistence
+
+- All data is automatically saved to local storage
+- Habits and completion records persist between sessions
+- Settings and preferences are preserved
 
 ## Recommended IDE Setup
 
