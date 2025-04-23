@@ -1,0 +1,74 @@
+@import './variables.css';
+@import './styles/components.css';
+@import './styles/habits.css';
+
+/* Category colors */
+.category-personal {
+  background-color: var(--color-pink);
+}
+
+.category-health {
+  background-color: var(--color-lime);
+}
+
+.category-work {
+  background-color: var(--color-purple);
+}
+
+.category-learning {
+  background-color: var(--color-yellow);
+}
+
+/* Base Styles */
+body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#app {
+  font-family: var(--font-family);
+}
+
+/* Typography */
+.heading-1 {
+  text-align: center;
+  font-size: clamp(0.8rem, 4vw, 6rem);
+}
+
+.heading-2 {
+  font-size: clamp(0.8rem, 3vw, 5rem);
+  margin: 0;
+}
+
+/* Common Button Styles */
+.btn {
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-base);
+  background: var(--color-black);
+  color: white;
+}
+
+.btn:hover {
+  background: var(--color-gray);
+  color: var(--color-black);
+}
+
+/* Common Card Styles */
+.card {
+  background: var(--color-background);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  max-width: 600px;
+  margin: 2rem auto;
+}
